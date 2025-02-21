@@ -16,22 +16,12 @@ const index = (req, res) => {
     if (err) return res.status(500).json({ error: "Database query failed" });
     res.json(results);
   });
-
-  // let postsSelected = postsData;
-  // const { tag } = req.query;
-  // if (tag) {
-  //   postsSelected = postsSelected.filter((post) => {
-  //     return post.tags.includes(tag);
-  //   });
-  // }
-  // res.json(postsSelected);
 };
 
 // show
 const show = (req, res) => {
-  const postSelected = postsData.find((elm) => elm.id == req.params.id);
-
-  res.json(postSelected);
+  // const postSelected = postsData.find((elm) => elm.id == req.params.id);
+  // res.json(postSelected);
 };
 
 // store
@@ -97,10 +87,6 @@ const destroy = (req, res) => {
     if (err) return res.status(500).json({ error: "Failed to delete post" });
     res.sendStatus(204);
   });
-
-  // const postSelected = postsData.find((elm) => elm.id == req.params.id);
-  // postsData.splice(postsData.indexOf(postSelected), "1");
-  // res.sendStatus(204);
 };
 
 module.exports = { index, show, store, update, modify, destroy };
