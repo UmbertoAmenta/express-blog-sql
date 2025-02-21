@@ -20,6 +20,17 @@ const index = (req, res) => {
 
 // show
 const show = (req, res) => {
+  const sql = `SELECT * FROM posts WHERE id = ?`;
+
+  const id = req.params.id;
+
+  connection.query(sql, [id], (err, results) => {
+    if (err) return res.status(500).json({ error: "Database query failed" });
+    if (results.length === 0)
+      return res.status(404).json({ error: "Post not found" });
+    res.json(results[0]);
+  });
+
   // const postSelected = postsData.find((elm) => elm.id == req.params.id);
   // res.json(postSelected);
 };
